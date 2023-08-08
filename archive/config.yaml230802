@@ -1,0 +1,176 @@
+units:
+  # choc spacing with padding
+  px: cx + 2
+  py: cy + 2
+  # keycap size
+  kcx: 17.5
+  kcy: 16.5
+  # switch hole
+  switch_xy: 13.8
+points:
+  zones:
+    matrix:
+      key:
+        width: kcx
+        height: kcy
+        padding: cy
+        spread: cx
+      anchor:
+        # Fix placement on KiCAD sheet.
+        shift: [100, -100]
+        # rotate: -20
+      columns:
+        pinky2:
+        pinky:
+        ring:
+          key.origin: [-12, -19]
+          key.stagger: 4
+        middle:
+          key.stagger: 2
+        index:
+          key.stagger: -2
+        inner:
+          key.stagger: -2
+      rows:
+        bottom:
+        home:
+        top:
+        num:
+    thumb:
+      key:
+        width: kcx
+        height: kcy
+        padding: cy
+        spread: cx
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-43, -19]
+      columns:
+        inner2:
+          rows:
+            top:
+              skip: true
+          key.splay: 10
+          key.origin: [0.5cx, 3]
+        inner:
+          rows:
+            top:
+              skip: true
+          key.splay: -10
+          key.origin: [-0.5cx, -0.47cy]
+        home:
+          rows:
+            top:
+              skip: true
+          key.splay: -10
+          key.origin: [-0.5cx, -0.47cy]
+        outer:
+          key.splay: -15
+          key.origin: [-1.1cx, -0.35cy]
+        outer2.key:
+          splay: -15
+          origin: [-1.2cx, -0.34cy]
+      rows:
+        bottom:
+        top:
+  # mirror: #mirroring section only here for paper print testing
+  #   ref: matrix_pinky_home
+  #   distance: 230
+outlines:
+  plate:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_pinky2_num
+          shift: [-0.5px,0.5py]
+        - ref: matrix_pinky_num
+          shift: [0.4px,0.5py]
+        - ref: matrix_ring_num
+          shift: [-0.5px,0.5py]
+        - ref: matrix_ring_num
+          shift: [0.4px,0.5py]
+        - ref: matrix_middle_num
+          shift: [-0.5px,0.5py]
+        - ref: matrix_middle_num
+          shift: [0.5px,0.5py]
+        - ref: matrix_index_num
+          shift: [-0.399px,0.5py]
+        - ref: matrix_index_num
+          shift: [0.5px,0.5py]
+        - ref: matrix_inner_num
+          shift: [-0.4px,0.5py]
+        - ref: matrix_inner_num
+          shift: [1.7px,0.5py]
+        - ref: thumb_outer_top
+          shift: [0.5px,0.5py]
+        - ref: thumb_outer2_top
+          shift: [-0.45px,0.5py]
+        - ref: thumb_outer2_top
+          shift: [0.5px,0.5py]
+        - ref: thumb_outer2_bottom
+          shift: [0.5px,-0.5py]
+        - ref: thumb_outer2_bottom
+          shift: [-0.45px,-0.5py]
+        - ref: thumb_outer_bottom
+          shift: [-0.5px,-0.5py]
+        - ref: thumb_home_bottom
+          shift: [-0.43px,-0.5py]
+        - ref: thumb_inner_bottom
+          shift: [0.44px,-0.5py]
+        - ref: thumb_inner_bottom
+          shift: [-0.44px,-0.5py]
+        - ref: thumb_inner2_bottom
+          shift: [-0.47px,-0.5py]
+        - ref: matrix_pinky_bottom
+          shift: [0.45px,-0.5py]
+        - ref: matrix_pinky2_bottom
+          shift: [-0.5px,-0.5py]
+      fillet: 1
+  keycaps:
+    - what: rectangle
+      where: true
+      size: [kcx, kcy]
+  switch_cutouts:
+    - what: rectangle
+      where: true
+      size: [switch_xy, switch_xy]
+  plate_keycaps:
+    - name: plate
+    - operation: subtract
+      name: keycaps
+  plate_switch_cutouts:
+    - name: plate
+    - operation: subtract
+      name: switch_cutouts
+pcbs:
+  nib:
+    outlines:
+      main:
+        outline: plate
+    footprints:
+      # mcu
+      elitepi:
+        what: nice_nano_pretty
+        where:
+          ref.aggregate.parts: [matrix_inner_top, matrix_inner_num]
+          shift: [19.5,0]
+        params:
+          traces: true
+          show_labels: false
+      choc_hotswap:
+        what: choc
+        where: true # since board will be using same footprint for every switch (choc), set to true.  
+        params:
+          keycaps: true # shows the outline of the keycap width x depth bounding box
+          reverse: true # determines if the footprint appears on the top and bottom of the pcb.
+          hotswap: true # use the hotsawp footprint instead of through-hole
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: true # true centers the diode footprint on every point. `shift` below moves the footprint below the switch footprint.
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -5]
