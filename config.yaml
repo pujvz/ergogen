@@ -24,6 +24,9 @@ units:
   # TRRS connector
   trx: 12.1
   try: 6.1
+  # trackpoint mount
+  tpm_x: 7.8
+  tpm_y: 23.3
 
 points:
   zones:
@@ -131,6 +134,17 @@ points:
       anchor:
         ref: reset
         shift: [(0.5rsx),-12.35]
+    trackpoint:
+      anchor:
+        ref.aggregate.parts:
+          - matrix_inner_home
+          - matrix_inner_bottom
+          - matrix_index_home
+          - matrix_index_bottom
+      key:
+        name: tp_mount
+        width: tpm_x
+        height: tpm_y
 
   #mirror: #mirroring section only here for paper print testing
   #  ref: matrix_pinky_home
@@ -276,7 +290,9 @@ pcbs:
           shift: [mcsx,mcsy]
         params:
           traces: true
-          show_labels: false
+          show_via_labels: true
+          show_silk_labels: true
+          show_instructions: true
           P2: C0
           P3: C1
           P4: C2
@@ -297,7 +313,9 @@ pcbs:
           - /thumb/
         adjust.rotate: 180 # orient choc footprint properly
         params:
-          keycaps: true # shows the outline of the keycap width x depth bounding box
+          show_keycaps: true # shows the outline of the keycap width x depth bounding box
+          keycaps_x: kcx
+          keycaps_y: kcy
           reverse: true # determines if the footprint appears on the top and bottom of the pcb.
           hotswap: true # use the hotswap footprint instead of through-hole
           from: "{{column_net}}"
@@ -332,3 +350,13 @@ pcbs:
           B: data
           C: GND
           D: VCC
+      trackpoint_mount:
+        what: infused-kim/trackpoint_mount
+        params:
+          reverse: true
+          show_outline_t430: false
+          show_outline_x240: false
+          show_outline_t460s: true
+          show_board: true
+        where:
+          ref: tp_mount
