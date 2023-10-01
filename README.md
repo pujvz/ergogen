@@ -9,7 +9,7 @@
   - wireless: nice!nano
 - Machine pin sockets
 - Diodes: IN4148 SOD-123
-- Trackpoint: from thinkpad T480s
+- Trackpoint: from thinkpad T460s
 
 
 # Ergogen
@@ -19,16 +19,15 @@
    - Reset switch. Complete
    - TRRS jack. Complete
    - mcu. Complete
+   - trackpoint. Complete
    - On/off switch
-   - trackpoint
 
 # PCB
 - Determine reasonable pin assignments.
 - Assign nets.
-- Determine cutout area for trackpoint.
-- Determine mounting hole locations.
+- Determine cutout area for trackpoint. Complete
 - Generate traces.
-    - Autorouting.
+    - Autorouting with Freerouting.
 - Review.
 
 # QMK firmware
@@ -41,6 +40,7 @@
 
 # Case
 3D modeling:
- - Case
+- Case
+    - Trackpoint mount
     - Tenting
-  - Palmrest
+- Palmrest

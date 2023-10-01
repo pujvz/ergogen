@@ -61,6 +61,10 @@ points:
             column_net: C4
           key.stagger: -2
         inner:
+          rows:
+            home:
+              adjust:
+                rotate: 180
           key:
             column_net: C5
           key.stagger: -2
