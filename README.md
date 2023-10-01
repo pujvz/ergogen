@@ -20,6 +20,7 @@
    - TRRS jack. Complete
    - mcu. Complete
    - trackpoint. Complete
+   - trackpoint pads for GND, VCC, CLK, DATA.
    - Mounting holes.
 
 # PCB
