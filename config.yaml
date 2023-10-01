@@ -297,19 +297,19 @@ pcbs:
           show_via_labels: true
           show_silk_labels: true
           show_instructions: true
-          P2: C0
-          P3: C1
-          P4: C2
-          P5: C3
-          P6: C4
-          P7: C5
-          P8: C6
-          P9: C7
-          P18: R0
-          P15: R1
-          P14: R2
-          P16: R3
-          P10: R4
+          D2: C0
+          D3: C1
+          D4: C2
+          D5: C3
+          D6: C4
+          D7: C5
+          D8: C6
+          D9: C7
+          A0: R0
+          D22: R1
+          D20: R2
+          D23: R3
+          D21: R4
       choc_hotswap:
         what: infused-kim/choc
         where:

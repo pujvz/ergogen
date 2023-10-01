@@ -34,14 +34,12 @@
       3,
       4,
       5,
-      6,
-      7,
+      8,
       9,
       10,
       11,
       12,
       13,
-      14,
       15,
       16,
       17,
@@ -51,6 +49,7 @@
       21,
       22,
       23,
+      24,
       25,
       26,
       27,
@@ -69,7 +68,7 @@
     "zone_display_mode": 0
   },
   "meta": {
-    "filename": "SofleKeyboard.kicad_prl",
+    "filename": "_autosave-nib.kicad_prl",
     "version": 3
   },
   "project": {

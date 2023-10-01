@@ -223,7 +223,7 @@
       },
       {
         "netclass": "Default",
-        "pattern": "RST"
+        "pattern": "RUN"
       },
       {
         "netclass": "Default",
@@ -231,15 +231,15 @@
       },
       {
         "netclass": "Default",
-        "pattern": "P21"
+        "pattern": "A3"
       },
       {
         "netclass": "Default",
-        "pattern": "P20"
+        "pattern": "A2"
       },
       {
         "netclass": "Default",
-        "pattern": "P19"
+        "pattern": "A1"
       },
       {
         "netclass": "Default",
@@ -263,11 +263,11 @@
       },
       {
         "netclass": "Default",
-        "pattern": "P1"
+        "pattern": "D0"
       },
       {
         "netclass": "Default",
-        "pattern": "P0"
+        "pattern": "D1"
       },
       {
         "netclass": "Default",
@@ -516,6 +516,10 @@
       {
         "netclass": "Default",
         "pattern": "outer2_top"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "RST"
       },
       {
         "netclass": "Default",

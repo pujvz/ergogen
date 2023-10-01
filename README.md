@@ -20,7 +20,7 @@
    - TRRS jack. Complete
    - mcu. Complete
    - trackpoint. Complete
-   - On/off switch
+   - Mounting holes.
 
 # PCB
 - Determine reasonable pin assignments.
