@@ -223,7 +223,7 @@
       },
       {
         "netclass": "Default",
-        "pattern": "RUN"
+        "pattern": "RST"
       },
       {
         "netclass": "Default",
@@ -231,15 +231,15 @@
       },
       {
         "netclass": "Default",
-        "pattern": "A3"
+        "pattern": "DATA"
       },
       {
         "netclass": "Default",
-        "pattern": "A2"
+        "pattern": "CLK"
       },
       {
         "netclass": "Default",
-        "pattern": "A1"
+        "pattern": "RESET"
       },
       {
         "netclass": "Default",
@@ -263,7 +263,7 @@
       },
       {
         "netclass": "Default",
-        "pattern": "D0"
+        "pattern": "SP"
       },
       {
         "netclass": "Default",
@@ -519,11 +519,11 @@
       },
       {
         "netclass": "Default",
-        "pattern": "RST"
+        "pattern": "BAT_P"
       },
       {
         "netclass": "Default",
-        "pattern": "data"
+        "pattern": "B"
       }
     ]
   },
@@ -533,7 +533,7 @@
       "idf": "",
       "netlist": "",
       "specctra_dsn": "",
-      "step": "nib.step",
+      "step": "../../../../buildkb/nib.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""

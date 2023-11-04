@@ -21,7 +21,7 @@
    - mcu. Complete
    - trackpoint. Complete
    - trackpoint pads for GND, VCC, CLK, DATA.
-   - Mounting holes.
+   - Mounting holes. Complete
 
 # PCB
 - Determine reasonable pin assignments.

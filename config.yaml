@@ -21,9 +21,13 @@ units:
   rsy: 6.1
   rsh: 1.3 # hole diameter
   rsd: 6.5 # distance between holes
+  # screw hole diameter (M2)
+  # screw head diameter ~3.3
+  # M2 nut height ~1.5
+  scd: 2.2
   # TRRS connector
-  trx: 12.1
-  try: 6.1
+  trx: 6.1
+  try: 12.1
   # trackpoint mount
   tpm_x: 7.8
   tpm_y: 23.3
@@ -134,10 +138,30 @@ points:
       anchor:
         ref: mcu
         shift: [(0.5mcux)-(0.5rsx)+0.1,(-0.5mcuy)-(0.5rsy)-4]
-    trrs:
+    power:
       anchor:
         ref: reset
-        shift: [(0.5rsx),-12.35]
+        shift: [0.1,-1.5rsy]
+    screw_pcb_pinky_top:
+      anchor:
+        - ref: matrix_pinky2_num
+          shift: [0.5*18,0.45*17]
+    screw_pcb_pinky_bottom:
+      anchor:
+        - ref: matrix_pinky_bottom
+          shift: [0.2*18,-0.5*22]
+    screw_pcb_index_top:
+      anchor:
+        - ref: matrix_inner_num
+          shift: [0.57*18,0.33*17]
+    screw_pcb_index_bottom:
+      anchor:
+        - ref: thumb_outer_top
+          shift: [0.725*18,0.525*17]
+    trrs:
+      anchor:
+        ref: mcu
+        shift: [0.85mcux,0.475mcuy+2]
     trackpoint:
       anchor:
         ref.aggregate.parts:
@@ -162,8 +186,12 @@ outlines:
         - ref: matrix_pinky_num
         - ref: matrix_inner_num
           shift: [0,0.5py-2]
+        - ref: matrix_inner_num # top right corner of trrs
+          shift: [1.52px+1.225trx,0.5py-2]
         - ref: matrix_inner_num
-          shift: [1.52px,0.5py-2]
+          shift: [1.52px+1.225trx,0.5py-2-1.075try]
+        - ref: matrix_inner_num
+          shift: [1.52px,0.5py-2-1.075try]
         - ref: matrix_inner_bottom
           shift: [1.52px,0.45py]
         - ref: matrix_inner_bottom
@@ -249,11 +277,22 @@ outlines:
       where:
         ref: mcu
       size: [mcux,mcuy]
+  power:
+    - what: rectangle
+      where:
+        ref: reset
+      adjust:
+        shift: [0,-0.7rsy]
+      size: [rsx,rsy]
   reset:
     - what: rectangle
       where:
         ref: reset
       size: [rsx,rsy]
+  screws:
+    - what: circle
+      where: /screw_pcb/
+      radius: 0.5scd
   trrs:
     - what: rectangle
       where:
@@ -297,19 +336,36 @@ pcbs:
           show_via_labels: true
           show_silk_labels: true
           show_instructions: true
-          D2: C0
-          D3: C1
-          D4: C2
-          D5: C3
-          D6: C4
-          D7: C5
-          D8: C6
-          D9: C7
-          A0: R0
-          D22: R1
-          D20: R2
-          D23: R3
-          D21: R4
+
+          # pin assignments (controller on top, components facing down)
+          # right column
+          P1: SP # serial pin
+          P0: D1
+          # GND
+          # GND
+          P2: C0
+          P3: C1
+          P4: C2
+          P5: C3
+          P6: C4
+          P7: C5
+          P8: C6
+          P9: C7
+
+
+          # left column
+          # RAW
+          # GND
+          # RST (RUN)
+          # VCC
+          P21: DATA # A3
+          P20: CLK # A2
+          P19: RESET # trackpoint reset
+          P18: R0
+          P15: R1
+          P14: R2
+          P16: R3
+          P10: R4
       choc_hotswap:
         what: infused-kim/choc
         where:
@@ -333,8 +389,16 @@ pcbs:
           from: "{{colrow}}"
           to: "{{row_net}}"
         adjust:
-          shift: [-7.8, 3.5]
+          shift: [-7.8, 2]
           rotate: 90 # makes diode arrow point down
+      power:
+        what: infused-kim/switch_power
+        where:
+          ref: power
+        params: 
+          reverse: true
+          from: BAT_P
+          to: RAW
       reset:
         what: reset_switch # footprint from celoide's corney-island
         where:
@@ -343,17 +407,30 @@ pcbs:
         params:
           from: RST
           to: GND
+      m2_screws:
+        what: screw_hole
+        where: /screw_pcb/
+        params:
+          size: scd
+          drill: scd
       trrs:
-        what: trrs
+        what: trrs_ceo
         where:
           ref: trrs
-          rotate: -90
+          # rotate: -90
         params:
-          reverse: true
-          A: data
-          B: data
+          reversible: true
+          symmetric: true
+          A: SP # interconnect pin needs assigning!
           C: GND
           D: VCC
+      tp_conn:
+        what: conn_ffc_05mm_8pin
+        where:
+          ref: power
+        adjust:
+          shift: [-10,0]
+          # rotate: 90
       trackpoint_mount:
         what: infused-kim/trackpoint_mount
         params:
