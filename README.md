@@ -9,23 +9,25 @@
   - wireless: nice!nano
 - Machine pin sockets
 - Diodes: IN4148 SOD-123
-- Trackpoint: from thinkpad T460s
+- 4.7K resistors: ERJ2RKF4701X
+- Trackpoint: 
 
 
 # Ergogen
 1. Use Ergogen to generate layout. Complete
 2. 3D print plate and insert switches and keycaps. Test ergonomics of layout. Complete
 3. Add footprints:
-   - Reset switch. Complete
-   - TRRS jack. Complete
+   - reset switch. Complete
+   - trrs jack. Complete
    - mcu. Complete
-   - trackpoint. Complete
-   - trackpoint pads for GND, VCC, CLK, DATA.
-   - Mounting holes. Complete
+   - trackpoint hole. Complete
+   - trackpoint connector (GND, VCC, CLK, DATA, RESET). Complete
+   - RESET jumper. Complete
+   - mounting holes. Complete
 
 # PCB
-- Determine reasonable pin assignments.
-- Assign nets.
+- Determine reasonable pin assignments. Complete
+- Assign nets. Complete
 - Determine cutout area for trackpoint. Complete
 - Generate traces.
     - Autorouting with Freerouting.
@@ -37,7 +39,7 @@
 # Trackpoint
 1. Select trackpoint module. Complete
 2. Copy footprint of trackpoint module. Complete
-3. Test trackpoint. Complete
+3. Test trackpoint with 1key qmk.
 
 # Case
 3D modeling:

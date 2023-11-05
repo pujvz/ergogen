@@ -141,7 +141,7 @@ points:
     power:
       anchor:
         ref: reset
-        shift: [0.1,-1.5rsy]
+        shift: [0.025,-1.5rsy]
     screw_pcb_pinky_top:
       anchor:
         - ref: matrix_pinky2_num
@@ -158,6 +158,10 @@ points:
       anchor:
         - ref: thumb_outer_top
           shift: [0.725*18,0.525*17]
+    tp_conn:
+      anchor:
+        ref: power
+        shift: [-10,0]
     trrs:
       anchor:
         ref: mcu
@@ -427,10 +431,37 @@ pcbs:
       tp_conn:
         what: conn_ffc_05mm_8pin
         where:
-          ref: power
-        adjust:
-          shift: [-10,0]
+          ref: tp_conn
+        # adjust:
           # rotate: 90
+      resistor_data:
+        what: 4_7kresistor
+        where:
+          ref: tp_conn
+        adjust:
+          shift: [-0.6,7]
+        params:
+          PAD1: DATA
+          PAD2: VCC
+      resistor_clk:
+        what: 4_7kresistor
+        where:
+          ref: tp_conn
+        adjust:
+          shift: [0.6,5]
+        params:
+          PAD1: VCC
+          PAD2: CLK
+      reset_jumper:
+        what: jumper
+        where:
+          ref: tp_conn
+        adjust:
+          shift: [0,11]
+          rotate: 90
+        params:
+          from: RESETC
+          to: RESET
       trackpoint_mount:
         what: infused-kim/trackpoint_mount
         params:

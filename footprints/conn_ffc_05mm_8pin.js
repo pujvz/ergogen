@@ -4,7 +4,7 @@ module.exports = {
         side: 'F',
         VCC: {type: 'net', value: 'VCC'},
         DATA: {type: 'net', value: 'DATA'},
-        RESET: {type: 'net', value: 'RESET'},
+        RESETC: {type: 'net', value: 'RESETC'},
         GND: {type: 'net', value: 'GND'},
         CLK: {type: 'net', value: 'CLK'},
     },
@@ -14,22 +14,22 @@ module.exports = {
   (descr "")
   (attr smd)
     ${'' /* footprint reference */}
-        (fp_text reference "${p.ref}" (at -0.968 -2.7564 0) (layer ${p.side}.SilkS) ${p.ref_hide}
+        (fp_text reference "${p.ref}" (at -0.968 -2.7564 ${p.rot}) (layer ${p.side}.SilkS) ${p.ref_hide}
           (effects (font (size 0.64 0.64) (thickness 0.15)))
         )
-  (fp_text value HRS_FH34SRJ-8S-0.5SH_50_ (at 6.7536 2.5436 0) (layer F.Fab)
+  (fp_text value HRS_FH34SRJ-8S-0.5SH_50_ (at 6.7536 2.5436 ${p.rot}) (layer F.Fab)
     (effects (font (size 0.64 0.64) (thickness 0.15)))
   )
-  (pad 1 smd rect (at 1.75 -1.25) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102) ${p.VCC.str})
-  (pad 2 smd rect (at 1.25 -1.25) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102) ${p.RESET.str})
-  (pad 3 smd rect (at 0.75 -1.25) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102) ${p.GND.str})
-  (pad 4 smd rect (at 0.25 -1.25) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102) ${p.DATA.str})
-  (pad 5 smd rect (at -0.25 -1.25) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102) ${p.CLK.str})
-  (pad 6 smd rect (at -0.75 -1.25) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102))
-  (pad 7 smd rect (at -1.25 -1.25) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102))
-  (pad 8 smd rect (at -1.75 -1.25) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102))
-  (pad S1 smd rect (at 2.75 1.25) (size 0.4 0.8) (layers F.Cu F.Mask F.Paste) (solder_mask_margin 0.102))
-  (pad S2 smd rect (at -2.75 1.25) (size 0.4 0.8) (layers F.Cu F.Mask F.Paste) (solder_mask_margin 0.102))
+  (pad 1 smd rect (at 1.75 -1.25 ${p.rot}) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102) ${p.VCC.str})
+  (pad 2 smd rect (at 1.25 -1.25 ${p.rot}) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102) ${p.RESETC.str})
+  (pad 3 smd rect (at 0.75 -1.25 ${p.rot}) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102) ${p.GND.str})
+  (pad 4 smd rect (at 0.25 -1.25 ${p.rot}) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102) ${p.DATA.str})
+  (pad 5 smd rect (at -0.25 -1.25 ${p.rot}) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102) ${p.CLK.str})
+  (pad 6 smd rect (at -0.75 -1.25 ${p.rot}) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102))
+  (pad 7 smd rect (at -1.25 -1.25 ${p.rot}) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102))
+  (pad 8 smd rect (at -1.75 -1.25 ${p.rot}) (size 0.3 0.8) (layers F.Cu F.Mask) (solder_mask_margin 0.102))
+  (pad S1 smd rect (at 2.75 1.25 ${p.rot}) (size 0.4 0.8) (layers F.Cu F.Mask F.Paste) (solder_mask_margin 0.102))
+  (pad S2 smd rect (at -2.75 1.25 ${p.rot}) (size 0.4 0.8) (layers F.Cu F.Mask F.Paste) (solder_mask_margin 0.102))
   (fp_poly
     (pts
       (xy 0.125 -1.65)
