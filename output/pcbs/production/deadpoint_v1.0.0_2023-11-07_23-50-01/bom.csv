@@ -1,0 +1,8 @@
+﻿Designator,Footprint,Quantity,Value,LCSC Part #
+B1,ResetSW,1,,
+DISP1,HRS_FH34SRJ-8S-0.5SH_50_,1,HRS_FH34SRJ-8S-0.5SH_50_,
+"DISP2, DISP3",RES_ERJ2RKF4701X,2,RES_ERJ2RKF4701X,
+"H1, H2, H3, H4",Screw_Hole,4,,
+J1,Jumper,1,Jumper,
+SW1,power_switch,1,,
+TRRS1,"TRRS-PJ-320A-dual (reversible, symmetric)",1,TRRS-PJ-320A-dual,

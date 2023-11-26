@@ -1,4 +1,7 @@
 units:
+  # choc spacing
+  # cx = 18
+  # cy = 17
   # choc spacing with padding
   px: cx + 2
   py: cy + 2
@@ -137,7 +140,7 @@ points:
     reset:
       anchor:
         ref: mcu
-        shift: [(0.5mcux)-(0.5rsx)+0.1,(-0.5mcuy)-(0.5rsy)-4]
+        shift: [(0.5mcux)-(0.5rsx),(-0.5mcuy)-(0.5rsy)-4]
     power:
       anchor:
         ref: reset
@@ -166,7 +169,7 @@ points:
       anchor:
         ref: mcu
         shift: [0.85mcux,0.475mcuy+2]
-    trackpoint:
+    tp_hole:
       anchor:
         ref.aggregate.parts:
           - matrix_inner_home
@@ -174,7 +177,6 @@ points:
           - matrix_index_home
           - matrix_index_bottom
       key:
-        name: tp_mount
         width: tpm_x
         height: tpm_y
 
@@ -305,26 +307,56 @@ outlines:
   pcb:
     - name: plate
     - name: matrix_fillet
-  plate_switch_cutouts:
-    - name: plate
-    - name: matrix_fillet
-    - operation: subtract
-      name: switch_cutouts
-    - operation: subtract
-      name: mcu
-  plate_full:
-    - name: plate
-    - name: matrix_fillet
-    - name: keycaps
+    - name: screws
       operation: subtract
-    - name: mcu
+  _tp_hole:
+    - what: circle
+      where:
+        ref: tp_hole
+      radius: 5.5/2
+  _tp_conn:
+    - what: rectangle
+      where:
+        ref: tp_conn
+      size: [6,3.8]
+  case_inner:
+    - name: pcb
+      expand: 0.2
+    - name: screws
       operation: subtract
-    - name: reset
+    - name: _tp_hole
       operation: subtract
-    - name: trrs
+    - name: _tp_conn
       operation: subtract
+  case_outer:
+    - name: pcb
+      expand: 2.2
+    - name: screws
+      operation: subtract
+    - name: _tp_hole
+      operation: subtract
+    - name: _tp_conn
+      operation: subtract
+  # plate_switch_cutouts:
+  #   - name: plate
+  #   - name: matrix_fillet
+  #   - operation: subtract
+  #     name: switch_cutouts
+  #   - operation: subtract
+  #     name: mcu
+  # plate_full:
+  #   - name: plate
+  #   - name: matrix_fillet
+  #   - name: keycaps
+  #     operation: subtract
+  #   - name: mcu
+  #     operation: subtract
+  #   - name: reset
+  #     operation: subtract
+    # - name: trrs
+    #   operation: subtract
 pcbs:
-  nib:
+  deadpoint:
     outlines:
       main:
         outline: pcb
@@ -364,7 +396,7 @@ pcbs:
           # VCC
           P21: DATA # A3
           P20: CLK # A2
-          P19: RESET # trackpoint reset
+          P19: TPR # trackpoint reset
           P18: R0
           P15: R1
           P14: R2
@@ -439,7 +471,7 @@ pcbs:
         where:
           ref: tp_conn
         adjust:
-          shift: [-0.6,7]
+          shift: [2,7]
         params:
           PAD1: DATA
           PAD2: VCC
@@ -448,7 +480,7 @@ pcbs:
         where:
           ref: tp_conn
         adjust:
-          shift: [0.6,5]
+          shift: [2,5]
         params:
           PAD1: VCC
           PAD2: CLK
@@ -457,12 +489,12 @@ pcbs:
         where:
           ref: tp_conn
         adjust:
-          shift: [0,11]
+          shift: [5,11]
           rotate: 90
         params:
           from: RESETC
-          to: RESET
-      trackpoint_mount:
+          to: TPR
+      trackpoint_hole:
         what: infused-kim/trackpoint_mount
         params:
           reverse: true
@@ -471,4 +503,4 @@ pcbs:
           show_outline_t460s: true
           show_board: true
         where:
-          ref: tp_mount
+          ref: tp_hole

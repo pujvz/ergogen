@@ -99,7 +99,7 @@
 (net 4 "VCC")
 (net 5 "DATA")
 (net 6 "CLK")
-(net 7 "RESET")
+(net 7 "TPR")
 (net 8 "R0")
 (net 9 "R1")
 (net 10 "R2")
@@ -187,7 +187,7 @@
 (add_net "VCC")
 (add_net "DATA")
 (add_net "CLK")
-(add_net "RESET")
+(add_net "TPR")
 (add_net "R0")
 (add_net "R1")
 (add_net "R2")
@@ -1007,7 +1007,7 @@
 
           
           (pad 118 thru_hole circle (at -3.262 2.540000000000001) (size 0.8 0.8) (drill 0.4) (layers *.Cu *.Mask) (net 17 "C2"))
-          (pad 7 thru_hole circle (at 3.262 2.540000000000001) (size 0.8 0.8) (drill 0.4) (layers *.Cu *.Mask) (net 7 "RESET"))
+          (pad 7 thru_hole circle (at 3.262 2.540000000000001) (size 0.8 0.8) (drill 0.4) (layers *.Cu *.Mask) (net 7 "TPR"))
 
           
           (pad 18 smd custom (at -5.5 2.540000000000001) (size 0.2 0.2) (layers F.Cu F.Mask) (net 35 "MCU1_18")
@@ -1028,7 +1028,7 @@
           ))
 
           
-          (pad 7 smd custom (at 4.775 2.540000000000001 180) (size 0.2 0.2) (layers F.Cu F.Mask) (net 7 "RESET")
+          (pad 7 smd custom (at 4.775 2.540000000000001 180) (size 0.2 0.2) (layers F.Cu F.Mask) (net 7 "TPR")
             (zone_connect 2)
             (options (clearance outline) (anchor rect))
             (primitives
@@ -1055,7 +1055,7 @@
             ) (width 0))
           ))
 
-          (pad 7 smd custom (at -4.775 2.540000000000001) (size 0.2 0.2) (layers B.Cu B.Mask) (net 7 "RESET")
+          (pad 7 smd custom (at -4.775 2.540000000000001) (size 0.2 0.2) (layers B.Cu B.Mask) (net 7 "TPR")
             (zone_connect 2)
             (options (clearance outline) (anchor rect))
             (primitives
@@ -1084,7 +1084,7 @@
         
 
             
-            (fp_text user RESET (at -3 2.540000000000001) (layer F.SilkS)
+            (fp_text user TPR (at -3 2.540000000000001) (layer F.SilkS)
               (effects (font (size 1 1) (thickness 0.15)) (justify left))
             )
             (fp_text user C2 (at 3 2.540000000000001) (layer F.SilkS)
@@ -1095,7 +1095,7 @@
             (fp_text user C2 (at -3 2.540000000000001 180) (layer B.SilkS)
               (effects (font (size 1 1) (thickness 0.15)) (justify right mirror))
             )
-            (fp_text user RESET (at 3 2.540000000000001 180) (layer B.SilkS)
+            (fp_text user TPR (at 3 2.540000000000001 180) (layer B.SilkS)
               (effects (font (size 1 1) (thickness 0.15)) (justify left mirror))
             )
           
@@ -1103,7 +1103,7 @@
             (fp_text user C2 (at -3.262 1.7400000000000002) (layer F.Fab)
               (effects (font (size 0.5 0.5) (thickness 0.08)))
             )
-            (fp_text user RESET (at 3.262 1.7400000000000002) (layer F.Fab)
+            (fp_text user TPR (at 3.262 1.7400000000000002) (layer F.Fab)
               (effects (font (size 0.5 0.5) (thickness 0.08)))
             )
 
@@ -1111,7 +1111,7 @@
             (fp_text user C2 (at -3.262 1.7400000000000002 180) (layer B.Fab)
               (effects (font (size 0.5 0.5) (thickness 0.08)) (justify mirror))
             )
-            (fp_text user RESET (at 3.262 1.7400000000000002 180) (layer B.Fab)
+            (fp_text user TPR (at 3.262 1.7400000000000002 180) (layer B.Fab)
               (effects (font (size 0.5 0.5) (thickness 0.08)) (justify mirror))
             )
           
@@ -7005,7 +7005,7 @@
     
 
         (module power_switch (layer F.Cu) (tedit 644556E6)
-          (at 218.675 89.95 0)
+          (at 218.57500000000002 89.95 0)
           (attr smd)
 
       
@@ -7091,7 +7091,7 @@
         (descr "Two pin through hole Tactile Switch, the same as on the Corne")
         (tags "Tactile Switch")
 
-        (at 218.65 80.8 -90)
+        (at 218.55 80.8 -90)
         
         (fp_text reference "B1" (at 0 2.55) (layer F.SilkS) hide (effects (font (size 1 1) (thickness 0.15))))
         (fp_text value "" (at 0 -2.55) (layer F.Fab) (effects (font (size 1 1) (thickness 0.15))))
@@ -7183,7 +7183,7 @@
       
 
 (module HRS_FH34SRJ-8S-0.5SH_50_ (layer F.Cu) (tedit 6542ED59)
-        (at 208.675 89.95 0)
+        (at 208.57500000000002 89.95 0)
   (descr "")
   (attr smd)
     
@@ -7289,7 +7289,7 @@
         
 
     (module RES_ERJ2RKF4701X (layer F.Cu) (tedit 6545DBA2)
-        (at 208.07500000000002 82.95 0)
+        (at 210.57500000000002 82.95 0)
   (descr "")
   (attr smd)
     
@@ -7313,7 +7313,7 @@
         
 
     (module RES_ERJ2RKF4701X (layer F.Cu) (tedit 6545DBA2)
-        (at 209.275 84.95 0)
+        (at 210.57500000000002 84.95 0)
   (descr "")
   (attr smd)
     
@@ -7337,7 +7337,7 @@
         
 
         (module lib:Jumper (layer F.Cu) (tedit 5E1ADAC2)
-        (at 208.675 78.95 90) 
+        (at 213.57500000000002 78.95 90) 
 
                 
         (fp_text reference "J1" (at 0 0) (layer F.SilkS) hide (effects (font (size 1.27 1.27) (thickness 0.15))))
@@ -7347,7 +7347,7 @@
         (pad 1 smd rect (at -0.50038 0 90) (size 0.635 1.143) (layers F.Cu F.Paste F.Mask)
         (clearance 0.1905) (net 79 "RESETC"))
         (pad 2 smd rect (at 0.50038 0 90) (size 0.635 1.143) (layers F.Cu F.Paste F.Mask)
-        (clearance 0.1905) (net 7 "RESET")))
+        (clearance 0.1905) (net 7 "TPR")))
     
 
       (module trackpoint_mount_t430 (layer F.Cu) (tedit 6449FFC5)
@@ -7404,6 +7404,10 @@
 (gr_line (start 200 39.5) (end 200 38.5) (angle 90) (layer Edge.Cuts) (width 0.15))
 (gr_line (start 199 37.5) (end 182 37.5) (angle 90) (layer Edge.Cuts) (width 0.15))
 (gr_arc (start 199 38.5) (end 200 38.5) (angle -90) (layer Edge.Cuts) (width 0.15))
+(gr_circle (center 109 41.35) (end 110.1 41.35) (layer Edge.Cuts) (width 0.15))
+(gr_circle (center 121.6 111) (end 122.69999999999999 111) (layer Edge.Cuts) (width 0.15))
+(gr_circle (center 200.26 41.39) (end 201.35999999999999 41.39) (layer Edge.Cuts) (width 0.15))
+(gr_circle (center 226.59641939999997 109.05874539999999) (end 227.69641939999997 109.05874539999999) (layer Edge.Cuts) (width 0.15))
             
 )
 

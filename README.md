@@ -29,8 +29,8 @@
 - Determine reasonable pin assignments. Complete
 - Assign nets. Complete
 - Determine cutout area for trackpoint. Complete
-- Generate traces.
-    - Autorouting with Freerouting.
+- Generate traces. Complete
+    - Autorouting with Freerouting. Complete
 - Review.
 
 # QMK firmware
