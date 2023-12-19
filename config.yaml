@@ -56,12 +56,13 @@ points:
           key:
             column_net: C2
             stagger: 10 # was 4
-            splay: -10
+            splay: -5
             origin: [0, -3]
         middle:
           key:
             column_net: C3
             stagger: 2
+            splay: -5
         index:
           key:
             column_net: C4
@@ -105,7 +106,7 @@ points:
             column_net: C5
           rows:
             upper:
-              shift: [5.5, 5]
+              shift: [5, 5]
         extension:
           key:
             column_net: C6
