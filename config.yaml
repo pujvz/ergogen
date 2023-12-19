@@ -12,7 +12,8 @@ units:
   kdx: kcx + 2.5
   kdy: kcy + 2.5
   # switch hole
-  switch_xy: 13.8
+  switch_x: 13.6 + 0.3
+  switch_y: 13.8 + 0.3
   # mcu dimensions
   mcux: 18
   mcuy: 33
@@ -48,25 +49,23 @@ points:
         shift: [100, -100]
         # rotate: -20
       columns:
-        pinky2:
-          key:
-            column_net: C0
         pinky:
           key:
             column_net: C1
         ring:
           key:
             column_net: C2
-          key.origin: [-12, -19]
-          key.stagger: 4
+            stagger: 10 # was 4
+            splay: -10
+            origin: [0, -3]
         middle:
           key:
             column_net: C3
-          key.stagger: 2
+            stagger: 2
         index:
           key:
             column_net: C4
-          key.stagger: -2
+            stagger: -2
         inner:
           rows:
             home:
@@ -74,7 +73,7 @@ points:
                 rotate: 180
           key:
             column_net: C5
-          key.stagger: -2
+            stagger: -2
       rows:
         bottom:
           row_net: R3
@@ -92,274 +91,218 @@ points:
         spread: cx
       anchor:
         ref: matrix_inner_bottom
-        shift: [-43, -19]
+        shift: [-10, -20]
       columns:
-        inner2:
-          key:
-            column_net: C3
-          rows:
-            top:
-              skip: true
-          key.splay: 10
-          key.origin: [0.5cx, 3]
-        inner:
+        flexion:
           key:
             column_net: C4
+            splay: -15
           rows:
-            top:
+            upper:
               skip: true
-          key.splay: -10
-          key.origin: [-0.5cx, -0.47cy]
-        home:
+        base:
           key:
             column_net: C5
           rows:
-            top:
-              skip: true
-          key.splay: -10
-          key.origin: [-0.5cx, -0.47cy]
-        outer:
+            upper:
+              shift: [5.5, 5]
+        extension:
           key:
             column_net: C6
-          key.splay: -15
-          key.origin: [-1.1cx, -0.35cy]
-        outer2:
-          key:
-            column_net: C7
-          key.splay: -15
-          key.origin: [-1.2cx, -0.34cy]
+          rows:
+            upper:
+              skip: true
       rows:
-        bottom:
+        lower:
           row_net: R4
-        top:
+        upper:
           row_net: R3
-    mcu:
-      anchor:
-        ref: matrix_inner_num
-        shift: [mcsx,mcsy]
-    reset:
-      anchor:
-        ref: mcu
-        shift: [(0.5mcux)-(0.5rsx),(-0.5mcuy)-(0.5rsy)-4]
-    power:
-      anchor:
-        ref: reset
-        shift: [0.025,-1.5rsy]
-    screw_pcb_pinky_top:
-      anchor:
-        - ref: matrix_pinky2_num
-          shift: [0.5*18,0.45*17]
-    screw_pcb_pinky_bottom:
-      anchor:
-        - ref: matrix_pinky_bottom
-          shift: [0.2*18,-0.5*22]
-    screw_pcb_index_top:
-      anchor:
-        - ref: matrix_inner_num
-          shift: [0.57*18,0.33*17]
-    screw_pcb_index_bottom:
-      anchor:
-        - ref: thumb_outer_top
-          shift: [0.725*18,0.525*17]
-    tp_conn:
-      anchor:
-        ref: power
-        shift: [-10,0]
-    trrs:
-      anchor:
-        ref: mcu
-        shift: [0.85mcux,0.475mcuy+2]
-    tp_hole:
-      anchor:
-        ref.aggregate.parts:
-          - matrix_inner_home
-          - matrix_inner_bottom
-          - matrix_index_home
-          - matrix_index_bottom
-      key:
-        width: tpm_x
-        height: tpm_y
+    # mcu:
+    #   anchor:
+    #     ref: matrix_inner_num
+    #     shift: [mcsx,mcsy]
+    # reset:
+    #   anchor:
+    #     ref: mcu
+    #     shift: [(0.5mcux)-(0.5rsx),(-0.5mcuy)-(0.5rsy)-4]
+    # power:
+    #   anchor:
+    #     ref: reset
+    #     shift: [0.025,-1.5rsy]
+    # screw_pcb_pinky_top:
+      # anchor:
+        # - ref: matrix_pinky2_num
+          # shift: [0.5*18,0.45*17]
+    # trrs:
+    #   anchor:
+    #     ref: mcu
+    #     shift: [0.85mcux,0.475mcuy+2]
+      # key:
+      #   width: tpm_x
+      #   height: tpm_y
 
   #mirror: #mirroring section only here for paper print testing
   #  ref: matrix_pinky_home
   #  distance: 250
 outlines:
-  plate:
+  pinky:
+    - what: rectangle
+      where: -/matrix_pinky/
+      size: [kdx, kdy]
+      fillet: 0.5
+  ring:
+    - what: rectangle
+      where: -/matrix_ring/
+      size: [kdx, kdy]
+      fillet: 0.5
+  middle:
+    - what: rectangle
+      where: -/matrix_middle/
+      size: [kdx, kdy]
+      fillet: 0.5
+  index:
+    - what: rectangle
+      where: -/matrix_index/
+      size: [kdx, kdy]
+      fillet: 0.5
+  inner:
+    - what: rectangle
+      where: -/matrix_inner/
+      size: [kdx, kdy]
+      fillet: 0.5
+  thumb:
+    - what: rectangle
+      where: -/thumb/
+      size: [kdx, kdy]
+      fillet: 0.5
+  matrix_thumb:
+    - name: pinky
+    - name: ring
+    - name: middle
+    - name: index
+    - name: inner
+    - name: thumb
+  plate_helper_shape:
     - what: polygon
       operation: stack
+      fillet: 0.5
       points:
-        - ref: matrix_pinky2_num
+        # top
+        # pinky
         - ref: matrix_pinky_num
+        - ref: matrix_ring_num
+        - ref: matrix_middle_num
+        - ref: matrix_index_num
         - ref: matrix_inner_num
-          shift: [0,0.5py-2]
-        - ref: matrix_inner_num # top right corner of trrs
-          shift: [1.52px+1.225trx,0.5py-2]
-        - ref: matrix_inner_num
-          shift: [1.52px+1.225trx,0.5py-2-1.075try]
-        - ref: matrix_inner_num
-          shift: [1.52px,0.5py-2-1.075try]
         - ref: matrix_inner_bottom
-          shift: [1.52px,0.45py]
-        - ref: matrix_inner_bottom
-          shift: [1.52px,0.py]
-        - ref: thumb_outer2_top
-          shift: [0.5px,0.5py]
-        - ref: thumb_outer2_bottom
-          shift: [0.5px,-0.5py]
-        - ref: thumb_outer2_bottom
-          shift: [-0.45px,-0.5py]
-        - ref: thumb_outer_bottom
-          shift: [-0.5px,-0.5py]
-        - ref: thumb_home_bottom
-          shift: [-0.43px,-0.5py]
-        - ref: thumb_inner_bottom
-          shift: [0.44px,-0.5py]
-        - ref: thumb_inner_bottom
-          shift: [-0.44px,-0.5py]
-        - ref: thumb_inner2_bottom
-          shift: [-0.9px,-0.5py]
-        - ref: matrix_pinky_bottom
-          shift: [0px,-0.5py]
-        - ref: matrix_pinky2_bottom
-          shift: [-0.4px,-0.5py]
-      fillet: 1
+          shift: [0.5kdx, 0.5kdy]
+        - ref: thumb_base_upper
+          shift: [-0.5kdx, 0.5kdy]
+        - ref: thumb_base_upper
+          shift: [0.5kdx, 0.5kdy]
+        - ref: thumb_base_upper
+          shift: [0.5kdx, -0.5kdy]
+        - ref: thumb_extension_lower
+          shift: [0.5kdx, 0.5kdy]
+        - ref: thumb_extension_lower
+          shift: [0.5kdx, -0.5kdy]
+        - ref: thumb_flexion_lower
+          shift: [-0.5kdx, -0.5kdy]
+        - ref: thumb_flexion_lower
+          shift: [-0.5kdx, 0.5]
+        - ref: matrix_index_bottom
+          shift: [0.1kdx, -0.5]
+        - ref: matrix_pinky_home
   keycaps:
     - what: rectangle
       where:
         - /matrix/
         - /thumb/
       size: [kcx, kcy]
-  pinky2:
-    - what: rectangle
-      where:
-        - /matrix_pinky2/
-      size: [kdx, kdy]
-      fillet: 1
-  pinky:
-    - what: rectangle
-      where:
-        - /matrix_pinky/
-      size: [kdx, kdy]
-      fillet: 1
-  ring:
-    - what: rectangle
-      where:
-        - /matrix_ring/
-      size: [kdx, kdy]
-      fillet: 1
-  middle:
-    - what: rectangle
-      where:
-        - /matrix_middle/
-      size: [kdx, kdy]
-      fillet: 1
-  index:
-    - what: rectangle
-      where:
-        - /matrix_index/
-      size: [kdx, kdy]
-      fillet: 1
-  inner:
-    - what: rectangle
-      where:
-        - /matrix_inner/
-      size: [kdx, kdy]
-      fillet: 1
-  matrix_fillet:
-    - name: pinky2
-    - name: pinky
-    - name: ring
-    - name: middle
-    - name: index
-    - name: inner
+  plate_shape:
+    - name: matrix_thumb
+    - name: plate_helper_shape
+  preview:
+    - name: plate_shape
+    - name: keycaps
+      operation: subtract
   switch_cutouts:
     - what: rectangle
       where:
         - /matrix/
         - /thumb/
-      size: [switch_xy, switch_xy]
-  mcu:
-    - what: rectangle
-      where:
-        ref: mcu
-      size: [mcux,mcuy]
-  power:
-    - what: rectangle
-      where:
-        ref: reset
-      adjust:
-        shift: [0,-0.7rsy]
-      size: [rsx,rsy]
-  reset:
-    - what: rectangle
-      where:
-        ref: reset
-      size: [rsx,rsy]
-  screws:
-    - what: circle
-      where: /screw_pcb/
-      radius: 0.5scd
-  trrs:
-    - what: rectangle
-      where:
-        ref: trrs
-      size: [trx,try]
-  pcb:
-    - name: plate
-    - name: matrix_fillet
-    - name: screws
+      size: [switch_x, switch_y]
+  test_print:
+    - name: plate_shape
+    - name: switch_cutouts
       operation: subtract
-  _tp_hole:
-    - what: circle
-      where:
-        ref: tp_hole
-      radius: 5.5/2
-  _tp_conn:
-    - what: rectangle
-      where:
-        ref: tp_conn
-      size: [6,3.8]
-  case_inner:
-    - name: pcb
-      expand: 0.2
-    - name: screws
-      operation: subtract
-    - name: _tp_hole
-      operation: subtract
-    - name: _tp_conn
-      operation: subtract
-  case_outer:
-    - name: pcb
-      expand: 2.2
-    - name: screws
-      operation: subtract
-    - name: _tp_hole
-      operation: subtract
-    - name: _tp_conn
-      operation: subtract
-  # plate_switch_cutouts:
+  # mcu:
+  #   - what: rectangle
+  #     where:
+  #       ref: mcu
+  #     size: [mcux,mcuy]
+  # power:
+  #   - what: rectangle
+  #     where:
+  #       ref: reset
+  #     adjust:
+      #   shift: [0,-0.7rsy]
+      # size: [rsx,rsy]
+  # reset:
+  #   - what: rectangle
+  #     where:
+  #       ref: reset
+  #     size: [rsx,rsy]
+  # screws:
+  #   - what: circle
+  #     where: /screw_pcb/
+  #     radius: 0.5scd
+  # trrs:
+  #   - what: rectangle
+  #     where:
+  #       ref: trrs
+  #     size: [trx,try]
+  # pcb:
   #   - name: plate
-  #   - name: matrix_fillet
-  #   - operation: subtract
-  #     name: switch_cutouts
-  #   - operation: subtract
-  #     name: mcu
-  # plate_full:
-  #   - name: plate
-  #   - name: matrix_fillet
-  #   - name: keycaps
+  #   - name: screws
+  #     operation: subtract
+  # case_inner:
+  #   - name: pcb
+  #     expand: 0.7
+  #   - name: screws
+  #     operation: subtract
+  # case_outer:
+  #   - name: pcb
+  #     expand: 2.7
+  #   - name: screws
+  #     operation: subtract
+  # case_top_inner:
+  #   - name: pcb
+  #     expand: 0.7
+  #   - name: screws
+  #     operation: subtract
+  #   - name: switch_cutouts
   #     operation: subtract
   #   - name: mcu
   #     operation: subtract
   #   - name: reset
   #     operation: subtract
-    # - name: trrs
-    #   operation: subtract
+  # case_top_outer:
+  #   - name: pcb
+  #     expand: 2.7
+  #   - name: screws
+  #     operation: subtract
+  #   - name: switch_cutouts
+  #     operation: subtract
+  #   - name: mcu
+  #     operation: subtract
+  #   - name: reset
+  #     operation: subtract
 pcbs:
   deadpoint:
     outlines:
       main:
-        outline: pcb
+        outline: plate_shape
     footprints:
       # mcu
       mcu:
@@ -427,80 +370,36 @@ pcbs:
         adjust:
           shift: [-7.8, 2]
           rotate: 90 # makes diode arrow point down
-      power:
-        what: infused-kim/switch_power
-        where:
-          ref: power
-        params: 
-          reverse: true
-          from: BAT_P
-          to: RAW
-      reset:
-        what: reset_switch # footprint from celoide's corney-island
-        where:
-          ref: reset
-          rotate: -90 # -90 = right facing
-        params:
-          from: RST
-          to: GND
-      m2_screws:
-        what: screw_hole
-        where: /screw_pcb/
-        params:
-          size: scd
-          drill: scd
-      trrs:
-        what: trrs_ceo
-        where:
-          ref: trrs
+      # power:
+      #   what: infused-kim/switch_power
+      #   where:
+      #     ref: power
+      #   params: 
+      #     reverse: true
+      #     from: BAT_P
+      #     to: RAW
+      # reset:
+      #   what: reset_switch # footprint from celoide's corney-island
+        # where:
+          # ref: reset
+          # rotate: -90 # -90 = right facing
+        # params:
+          # from: RST
+          # to: GND
+      # m2_screws:
+        # what: screw_hole
+        # where: /screw_pcb/
+        # params:
+          # size: scd
+          # drill: scd
+      # trrs:
+        # what: trrs_ceo
+        # where:
+          # ref: trrs
           # rotate: -90
-        params:
-          reversible: true
-          symmetric: true
-          A: SP # interconnect pin needs assigning!
-          C: GND
-          D: VCC
-      tp_conn:
-        what: conn_ffc_05mm_8pin
-        where:
-          ref: tp_conn
-        # adjust:
-          # rotate: 90
-      resistor_data:
-        what: 4_7kresistor
-        where:
-          ref: tp_conn
-        adjust:
-          shift: [2,7]
-        params:
-          PAD1: DATA
-          PAD2: VCC
-      resistor_clk:
-        what: 4_7kresistor
-        where:
-          ref: tp_conn
-        adjust:
-          shift: [2,5]
-        params:
-          PAD1: VCC
-          PAD2: CLK
-      reset_jumper:
-        what: jumper
-        where:
-          ref: tp_conn
-        adjust:
-          shift: [5,11]
-          rotate: 90
-        params:
-          from: RESETC
-          to: TPR
-      trackpoint_hole:
-        what: infused-kim/trackpoint_mount
-        params:
-          reverse: true
-          show_outline_t430: false
-          show_outline_x240: false
-          show_outline_t460s: true
-          show_board: true
-        where:
-          ref: tp_hole
+        # params:
+          # reversible: true
+          # symmetric: true
+          # A: SP # interconnect pin
+          # C: GND
+          # D: VCC
